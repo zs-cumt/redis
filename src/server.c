@@ -6228,6 +6228,8 @@ int main(int argc, char **argv) {
     int j;
     char config_from_stdin = 0;
 
+    printf("============CLion Redis Start==================\n");
+
 #ifdef REDIS_TEST
     if (argc >= 3 && !strcasecmp(argv[1], "test")) {
         int accurate = 0;

@@ -201,12 +201,17 @@
                                representing the previous entry len. */
 
 /* Different encoding/length possibilities */
-#define ZIP_STR_MASK 0xc0
-#define ZIP_INT_MASK 0x30
-#define ZIP_STR_06B (0 << 6)
-#define ZIP_STR_14B (1 << 6)
-#define ZIP_STR_32B (2 << 6)
-#define ZIP_INT_16B (0xc0 | 0<<4)
+/*
+ * entry可以存两种类型的数据int和String
+ * 比如要存储一个数值125，如果用String类型，相当于3个字符，需要3个字节
+ * 但是如果用int类型，只需要1个字节(0~255)即可
+ */
+#define ZIP_STR_MASK 0xc0   // 1100 0000
+#define ZIP_INT_MASK 0x30   // 0011 0000
+#define ZIP_STR_06B (0 << 6)    // 0000 0000
+#define ZIP_STR_14B (1 << 6)    // 0100 0000
+#define ZIP_STR_32B (2 << 6)    // 1000 0000
+#define ZIP_INT_16B (0xc0 | 0<<4)   //
 #define ZIP_INT_32B (0xc0 | 1<<4)
 #define ZIP_INT_64B (0xc0 | 2<<4)
 #define ZIP_INT_24B (0xc0 | 3<<4)
